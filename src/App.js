@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import "animate.css";
+import Header from "./components/Header";
+import Button from "./components/Button";
+import Wheel from "./components/Wheel";
 
 function App() {
+  const [random, setRandom] = useState(0);
+  const x = 1024;
+  const y = 99999;
+
+  const SpinTheWheel = () => {
+    setRandom(Math.floor(Math.random() * (x - y)) + y);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Button onclick={() => SpinTheWheel()} />
+      <Wheel onrandom={random} />
     </div>
   );
 }
